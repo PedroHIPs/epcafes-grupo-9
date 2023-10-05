@@ -1,5 +1,7 @@
 package com.epcafes.entity;
 
+import java.io.Console;
+
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,6 +36,13 @@ public class CapitalFixo {
 	@Column(name = "horas_trabalhadas", nullable = false)
 	private int horasTrabalhadas;
 	
+	@Column(name = "remuneracao", nullable = true)
+	private double remuneracao;
+	
+	private double calcularRemuneracao(double valorBemNovo, double taxaDePoupanca, int vidaHoras, int vidaAnos, int horasTrabalhadas) {
+	    return (((valorBemNovo/2) * taxaDePoupanca)/(vidaHoras/vidaAnos))*horasTrabalhadas;
+	}
+	
 	@Builder
 	public CapitalFixo(double valorBemNovo, double taxaDePoupanca, int vidaHoras, int vidaAnos, int horasTrabalhadas) {
 		this.valorBemNovo = valorBemNovo;
@@ -41,5 +50,9 @@ public class CapitalFixo {
 		this.vidaHoras = vidaHoras;
 		this.vidaAnos = vidaAnos;
 		this.horasTrabalhadas = horasTrabalhadas;
+		this.remuneracao = calcularRemuneracao(valorBemNovo, taxaDePoupanca, vidaHoras, vidaAnos, horasTrabalhadas);
 	}
+	
+    public CapitalFixo() {
+    }
 }

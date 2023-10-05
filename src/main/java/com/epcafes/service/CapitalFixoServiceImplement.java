@@ -5,8 +5,6 @@ import java.util.*;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import com.epcafes.dto.request.CapitalFixoRequestDTO;
-import com.epcafes.dto.response.CapitalFixoResponseDTO;
 import com.epcafes.entity.CapitalFixo;
 import com.epcafes.repository.CapitalFixoRepository;
 import com.epcafes.util.CapitalFixoMapper;
@@ -22,23 +20,23 @@ public class CapitalFixoServiceImplement implements CapitalFixoService{
 	
 	private final CapitalFixoMapper capitalfixoMapper;
 	
-	public CapitalFixoResponseDTO findById(Long id) {
-		return capitalfixoMapper.toCapitalFixoDTO(returnCapitalFixo(id));
+	public CapitalFixo findById(Long id) {
+		return returnCapitalFixo(id);
 	}
 	
-	public List<CapitalFixoResponseDTO> findAll(){
-		return capitalfixoMapper.toCapitalFixoDTO(capitalfixoRepository.findAll());
+	public List<CapitalFixo> findAll(){
+		return capitalfixoRepository.findAll();
 	}
 	
-	public CapitalFixoResponseDTO register(CapitalFixoRequestDTO CapitalFixoDTO) {
-		CapitalFixo capitalfixo = capitalfixoMapper.toCapitalFixo(CapitalFixoDTO);
-		return capitalfixoMapper.toCapitalFixoDTO(capitalfixoRepository.save(capitalfixo));
+	public CapitalFixo register(CapitalFixo CapitalFixo) {
+		CapitalFixo capitalfixo = CapitalFixo;
+		return capitalfixoRepository.save(capitalfixo);
 	}
 	
-	public CapitalFixoResponseDTO update(CapitalFixoRequestDTO capitalFixoDTO, Long id) {
+	public CapitalFixo update(CapitalFixo capitalFixo, Long id) {
 		CapitalFixo capitalfixo = returnCapitalFixo(id);
-		capitalfixoMapper.updateCapitalFixoData(capitalfixo, capitalFixoDTO);
-		return capitalfixoMapper.toCapitalFixoDTO(capitalfixoRepository.save(capitalfixo));
+		capitalfixoMapper.updateCapitalFixoData(capitalfixo, capitalFixo);
+		return capitalfixoRepository.save(capitalfixo);
 	}
 	
 	public String delete(Long id) {

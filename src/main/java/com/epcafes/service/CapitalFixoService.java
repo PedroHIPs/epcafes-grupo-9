@@ -2,18 +2,17 @@ package com.epcafes.service;
 
 import java.util.List;
 
-import com.epcafes.dto.request.CapitalFixoRequestDTO;
-import com.epcafes.dto.response.CapitalFixoResponseDTO;
+import com.epcafes.entity.CapitalFixo;
 
 public interface CapitalFixoService{
 	
-	CapitalFixoResponseDTO findById(Long id);
+	CapitalFixo findById(Long id);
 	
-	List<CapitalFixoResponseDTO> findAll();
+	List<CapitalFixo> findAll();
 	
-	CapitalFixoResponseDTO register(CapitalFixoRequestDTO CapitalFixoDTO);
+	CapitalFixo register(CapitalFixo CapitalFixo);
 	
-	CapitalFixoResponseDTO update(CapitalFixoRequestDTO capitalFixoDTO, Long id);
+	CapitalFixo update(CapitalFixo capitalFixo, Long id);
 	
 	String delete(Long id);
 }
